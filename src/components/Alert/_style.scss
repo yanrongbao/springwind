@@ -1,0 +1,51 @@
+.springwind-alert {
+  position: relative;
+  color: $alert-color;
+  padding: $alert-paddiny-y $alert-paddiny-x;
+  margin-bottom: 1rem;
+  border: $alert-border-width solid transparent;
+  border-radius: $alert-border-radius;
+  &-default {
+    background-color: $alert-default-bg-color;
+    border-color: $border-default-color;
+  }
+  &-danger {
+    background-color: $alert-danger-bg-color;
+    border-color: $border-danger-color;
+  }
+  &-success {
+    background-color: $alert-success-bg-color;
+    border-color: $border-success-color;
+  }
+  &-warning {
+    background-color: $alert-warning-bg-color;
+    border-color: $border-warning-color;
+  }
+  &-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: $alert-paddiny-y $alert-paddiny-x;
+    color: inherit;
+    cursor: pointer;
+  }
+  &-desC {
+    font-size: 0.875rem;
+    margin: 0.3rem 0 0;
+  }
+  .bold-title {
+    font-weight: $font-weight-blod;
+  }
+}
+.springwind-alert-entered {
+  height: 100%;
+  opacity: 1;
+}
+.springwind-alert-exiting {
+  opacity: 0;
+  transition: all 0.5s;
+}
+
+.springwind-alert-exited {
+  opacity: 0;
+}

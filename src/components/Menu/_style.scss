@@ -1,0 +1,87 @@
+.springwind-menu {
+  display: flex;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 30px;
+  list-style: none;
+  border-bottom: $menu-border-width solid $menu-border-color;
+  .menu-item {
+    padding: $menu-item-padding-y $menu-item-padding-x;
+    cursor: pointer;
+    transition: $menu-transition;
+    &:hover,
+    &:focus {
+      text-decoration: none;
+    }
+    &.is-disabled {
+      color: $menu-item-disabled-color;
+      pointer-events: none;
+      cursor: default;
+    }
+    &.is-active,
+    &:hover {
+      color: $menu-item-active-color;
+      border-bottom: $menu-item-active-border-width solid
+        $menu-item-active-color;
+    }
+  }
+  .springwind-submenu {
+    list-style: none;
+    padding-left: 0;
+    white-space: nowrap;
+    display: none;
+    background-color: $body-bg;
+    .menu-item {
+      padding: $menu-item-padding-y $menu-item-padding-x;
+      cursor: pointer;
+      transition: $menu-transition;
+      color: $body-color;
+    }
+  }
+  .submenu-item {
+    position: relative;
+  }
+  .springwind-submenu.menu-open {
+    display: block;
+  }
+}
+.menu-horizontal {
+  .springwind-submenu {
+    position: absolute;
+    border: $menu-border-width solid $menu-border-color;
+    top: 45px;
+    .menu-item {
+      &.is-active,
+      &:hover {
+        color: $menu-item-active-color !important;
+        border-bottom: 0;
+      }
+    }
+  }
+}
+.menu-vertical {
+  flex-direction: column;
+  border-bottom: 0px;
+  border: $menu-border-width solid $menu-border-color;
+  > .menu-item {
+    border-left: $menu-item-active-border-width solid transparent;
+    &.is-active,
+    &:hover {
+      border-bottom: 0px;
+      color: $menu-item-active-color;
+      border-left: $menu-item-active-border-width solid $menu-item-active-color;
+    }
+  }
+  .springwind-submenu {
+    border-width: 0;
+    position: static;
+    .menu-item {
+      &.is-active,
+      &:hover {
+        border-bottom: 0px;
+        color: $menu-item-active-color !important;
+        border-left: 0px;
+      }
+    }
+  }
+}
