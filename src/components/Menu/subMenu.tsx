@@ -2,6 +2,10 @@ import React, { FunctionComponentElement, useContext, useState } from 'react';
 import classNames from 'classnames';
 import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
+import Icon from '../Icon';
+import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { CSSTransition } from 'react-transition-group'
+import Transition from '../Transition'
 
 export interface SubMenuProps {
   index?: string;
@@ -25,6 +29,8 @@ const SubMenu: React.FC<SubMenuProps> = ({
   const [menuOpen, setMenuOpen] = useState(isOpened);
   const classes = classNames('menu-item submenu-item', className, {
     'is-active': context.index === index,
+    'is-opened': menuOpen,
+    'is-vertical': context.mode === 'vertical'
   });
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -42,19 +48,19 @@ const SubMenu: React.FC<SubMenuProps> = ({
   const clickEvents =
     context.mode === 'vertical'
       ? {
-          onClick: handleClick,
-        }
+        onClick: handleClick,
+      }
       : {};
   const hoverEvents =
     context.mode !== 'vertical'
       ? {
-          onMouseEnter: (e: React.MouseEvent) => {
-            handleMouse(e, true);
-          },
-          onMouseLeave: (e: React.MouseEvent) => {
-            handleMouse(e, false);
-          },
-        }
+        onMouseEnter: (e: React.MouseEvent) => {
+          handleMouse(e, true);
+        },
+        onMouseLeave: (e: React.MouseEvent) => {
+          handleMouse(e, false);
+        },
+      }
       : {};
   const renderChildren = () => {
     const subMenuClasses = classNames('springwind-submenu', {
@@ -72,12 +78,17 @@ const SubMenu: React.FC<SubMenuProps> = ({
         );
       }
     });
-    return <ul className={subMenuClasses}>{childComponent}</ul>;
+    return (
+      <Transition in={menuOpen} timeout={300} animation={'zoom-in-bottom'} >
+        <ul className={subMenuClasses}>{childComponent}</ul>
+      </Transition>
+    )
   };
   return (
     <li key={index} className={classes} {...hoverEvents}>
       <div className='submenu-title' {...clickEvents}>
         {title}
+        <Icon icon={faAngleDown} className={'arrow-icon'} />
       </div>
       {renderChildren()}
     </li>

@@ -4,10 +4,13 @@ import Menu from './components/Menu/menu';
 import MenuItem from './components/Menu/menuItem';
 import SubMenu from './components/Menu/subMenu';
 import Alert, { AlertType } from './components/Alert/alert';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
+import Icon from './components/Icon'
 
 function App() {
   return (
     <div className='App'>
+      <Icon icon={faCoffee} theme={'danger'} size={'10x'} />
       <header className='App-header'>
         <div
           style={{
@@ -28,12 +31,12 @@ function App() {
           <Alert title='this is a alert' type={AlertType.Warning} />
           <Alert title='this is a alert' type={AlertType.Success} />
         </div>
-        {/* <Menu
+        <Menu
           defaultIndex={'0'}
           onSelect={(index) => {
             alert(index);
           }}
-          mode='vertical'
+          mode={'horizontal'}
           defaultOpenSubMenus={['2']}
         >
           <MenuItem>cool link</MenuItem>
@@ -43,21 +46,21 @@ function App() {
             <MenuItem>dropDpwn2</MenuItem>
           </SubMenu>
           <MenuItem>cool link3</MenuItem>
-        </Menu> */}
-        {/* <Button> hello </Button>
+        </Menu>
+        <Button> hello </Button>
         <Button disabled> Disabled Button </Button>
-        <Button btnType={ButtonType.Primary} size={ButtonSize.Large}>
+        <Button btnType={'primary'} size={'lg'}>
           Large Primary
         </Button>
-        <Button btnType={ButtonType.Danger} size={ButtonSize.Small}>
+        <Button btnType={'danger'} size={'sm'}>
           Small Danger
         </Button>
-        <Button btnType={ButtonType.Link} href='http://www.baidu.com/'>
+        <Button btnType={'link'} href='http://www.baidu.com/'>
           baidu Link
         </Button>
-        <Button btnType={ButtonType.Link} disabled href='http://www.baidu.com/'>
+        <Button btnType={'link'} disabled href='http://www.baidu.com/'>
           Disabled Link
-        </Button> */}
+        </Button>
       </header>
     </div>
   );
