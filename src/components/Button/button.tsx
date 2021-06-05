@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC, ButtonHTMLAttributes, AnchorHTMLAttributes } from 'react';
 import classNames from 'classnames';
 
 export type ButtonSize = 'lg' | 'sm'
@@ -15,13 +15,20 @@ interface BaseButtonProps {
 }
 
 type NativeButtonProps = BaseButtonProps &
-  React.ButtonHTMLAttributes<HTMLElement>;
+  ButtonHTMLAttributes<HTMLElement>;
 type AnchorButtonProps = BaseButtonProps &
-  React.AnchorHTMLAttributes<HTMLElement>;
+  AnchorHTMLAttributes<HTMLElement>;
 
 export type ButtonProps = Partial<NativeButtonProps & AnchorButtonProps>;
 
-const Button: React.FC<ButtonProps> = (props) => {
+/**
+ * 这是我们第一个 Button 组件
+ * ## Button 
+ * ~~~js
+ * import { Buttom } from 'springwind'
+ * ~~~
+ */
+export const Button: FC<ButtonProps> = (props) => {
   const {
     btnType,
     className,
