@@ -17,4 +17,4 @@ const Icon: FC<IconProps> = (props) => {
     return <FontAwesomeIcon className={classes} {...restProps} />
 }
 
-export default Icon
+export default Icon;

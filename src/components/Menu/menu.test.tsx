@@ -101,7 +101,7 @@ describe('test Menu and MenuItem component', () => {
     const wrapper = render(generateMenu(testProps));
     const menuElement = wrapper.getByTestId('test-menu');
     expect(menuElement).toHaveClass('menu-horizontal');
-    const elem = wrapper.queryByText('drop1');
+    const elem = wrapper.queryByText('drop1') as HTMLElement;
     const dropdownElement = wrapper.getByText('dropMenu');
     fireEvent.click(dropdownElement);
     expect(elem).toBeVisible();

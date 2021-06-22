@@ -4,7 +4,6 @@ import { MenuContext } from './menu';
 import { MenuItemProps } from './menuItem';
 import Icon from '../Icon';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import { CSSTransition } from 'react-transition-group'
 import Transition from '../Transition'
 
 export interface SubMenuProps {

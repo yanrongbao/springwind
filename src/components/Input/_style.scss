@@ -1,0 +1,98 @@
+.springwind-input-wrapper {
+    display: flex;
+    width: 100%;
+    margin-bottom: 30px;
+    position: relative;
+    box-sizing: border-box;
+    border: $input-border-width solid $input-border-color;
+    border-radius: $input-border-radius;
+    overflow: hidden;
+    // size 为lg时，input padding 变大
+    &.input-lg {
+        .springwind-input-inner {
+            padding: $btn-padding-y-lg $input-padding-x-lg;
+        }
+    }
+    // 当有addonBefore/addonAfter
+    &.springwind-input-group {
+        font-family: $input-font-family;
+        font-size: $input-font-size;
+        font-weight: $input-font-weight;
+        line-height: $input-line-height;
+        color: $input-color;
+        // addon
+        .springwind-input-group-addon {
+            display: flex;
+            align-items: center;
+            padding: $input-addon-padding;
+            background-color: $input-addon-bg;
+            flex: 1;
+        } 
+        // 当有前后标签时候 input样式
+        .springwind-input-inner {
+            padding: $btn-padding-y $input-padding-x;
+        }
+        // size 为lg时，input padding 变大
+        &.input-lg {
+            .springwind-input-inner {
+                padding: $btn-padding-y-lg $input-padding-x-lg;
+            }
+        }
+    }
+    // 当有suffix/prefix
+    &.springwind-input-affix-wrapper {
+        padding: $btn-padding-y $input-padding-x;
+        // size为lg样式
+        &.input-lg {
+            padding: $btn-padding-y-lg $input-padding-x-lg;
+        }
+        // input样式
+        .springwind-input-inner {
+            padding: 0;
+        }
+    }
+    // 默认 input样式
+    .springwind-input-inner {
+        width: 100%;
+        background-color: $input-bg;
+        background-clip: padding-box;
+        border: none;
+        outline: none;
+        border-radius: $input-border-radius;
+        padding: $btn-padding-y $input-padding-x;
+    }
+    // 前后缀添加类名
+    .springwind-input-prefix ,.springwind-input-suffix {
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+    }
+    .springwind-input-prefix  {
+        margin-right: 4px;
+    }
+    .springwind-input-suffix {
+        margin-left: 4px;
+    }
+    // focus样式
+    &.springwind-select-focus {
+        border-color: #40a9ff;
+        outline: 0;
+        box-shadow: $input-focus-box-shadow;
+    }
+    // placeholder样式
+    input::-webkit-input-placeholder {
+        color: $input-placeholder-color;
+        font-size: $input-placeholder-font-size;
+    }
+    // disabled样式
+    &.is-disabled {
+        background-color: $input-disabled-bg;
+        border-color: $input-disabled-border-color;
+        cursor: $input-disabled-cursor;
+        color: $input-disabled-color;
+        .springwind-input-inner {
+            background-color: $input-disabled-bg;
+            cursor: $input-disabled-cursor;
+        }
+    }
+}
