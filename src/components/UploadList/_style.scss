@@ -1,0 +1,60 @@
+.springwind-upload-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+.springwind-upload-list-item {
+    transition: all .5s cubic-bezier(.55,0,.1,.1);
+    font-size: 14px;
+    line-height: 1.8;
+    margin-top: 5px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    width: 200px;
+    position: relative;
+    &:first-child {
+        margin-top: 10px;
+    }
+    .file-name {
+        margin-left: 5px;
+        margin-right: 5px;
+        svg {
+            margin-right: 5px;
+            color: $gray-500;
+        }
+    }
+    .file-name-error {
+        color: $danger;
+        svg {
+            color: $danger;
+        }
+    }
+    .file-name-success {
+        color: $green;
+        svg {
+            color: $green;
+        }
+    }
+    .file-status {
+        display: block;
+        position: absolute;
+        right: 5px;
+        top: 0;
+        line-height: inherit;
+    }
+    .file-actions {
+        display: none;
+        position: absolute;
+        right: 5px;
+        top: 0;
+        line-height: inherit;
+    }
+    &:hover {
+        .file-actions {
+            display: block;
+        }
+        .file-status {
+            display: none;
+        }
+    }
+}

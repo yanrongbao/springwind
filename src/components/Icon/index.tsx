@@ -5,7 +5,7 @@ import { FontAwesomeIcon, FontAwesomeIconProps } from '@fortawesome/react-fontaw
 export type ThemeProps = 'primary' | 'secondary' | 'success' | 'info' | 'warning' | 'light' | 'dark' | 'danger'
 
 export interface IconProps extends FontAwesomeIconProps {
-    theme?: ThemeProps
+    theme?: ThemeProps;
 }
 
 const Icon: FC<IconProps> = (props) => {

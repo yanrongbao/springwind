@@ -16,7 +16,7 @@ addDecorator(withInfo)
 addParameters({
     info: {
         inline: true,
-        header: false
-    }
+        header: false,
+    },
 })
 configure(req, module);
