@@ -2,6 +2,7 @@ import React, { FC } from 'react'
 import { UploadFile } from '../Upload/upload'
 import Icon from '../Icon/index'
 import { faFileAlt, faSpinner, faCheckCircle, faTimesCircle, faTimes } from '@fortawesome/free-solid-svg-icons'
+import Progress from '../Process/process'
 
 interface UploadListProps {
     fileList: UploadFile[];
@@ -25,6 +26,10 @@ export const UploadList: FC<UploadListProps> = (props) => {
                     <span className={'file-actions'}>
                         <Icon icon={faTimes} onClick={() => onRemove(file)} />
                     </span>
+                    {
+                        file.status === 'uploading' &&
+                        <Progress precent={file.precent || 0} />
+                    }
                 </li>
             })}
         </ul >
