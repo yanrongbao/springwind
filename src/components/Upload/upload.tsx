@@ -18,6 +18,12 @@ export interface UploadFile {
 export interface UploadProps {
     action: string;
     defaultFileList?: UploadFile[];
+    headers?: { [key: string]: any };
+    name?: string;
+    data?: { [key: string]: any };
+    withCredentials?: boolean;
+    accept?: string;
+    multiple?: boolean;
     onBeforeUpload?: (file: File) => boolean | Promise<File>;
     onProgress?: (percentage: number, file: File) => void;
     onSuccess?: (data: any, file: File) => void;
@@ -30,6 +36,12 @@ export const Upload: FC<UploadProps> = (props) => {
     const {
         action,
         defaultFileList,
+        name,
+        headers,
+        data,
+        withCredentials,
+        accept,
+        multiple,
         onError,
         onProgress,
         onSuccess,
@@ -89,13 +101,22 @@ export const Upload: FC<UploadProps> = (props) => {
             precent: 0,
             raw: file
         }
-        setFileList([_file, ...fileList])
+        setFileList(prevList => {
+            return [file, ...prevList]
+        })
         const formData = new FormData();
-        formData.append(file.name, file);
+        formData.append(name || 'file', file);
+        if (data) {
+            Object.keys(data).forEach(key => {
+                formData.append(key, data[key]);
+            })
+        }
         axios.post(action, formData, {
             headers: {
-                'Content-Type': 'multipart/form-data'
+                ...headers,
+                'Content-Type': 'multipart/form-data',
             },
+            withCredentials,
             onUploadProgress: (e) => {
                 let percentage = Math.round((e.loaded * 100) / e.detail) || 0;
                 if (percentage < 100) {
@@ -131,6 +152,8 @@ export const Upload: FC<UploadProps> = (props) => {
             <input
                 ref={fileInput}
                 type="file"
+                accept={accept}
+                multiple={multiple}
                 className={'springwind-file-input'}
                 style={{ display: 'none' }}
                 onChange={handleFileChange}
@@ -139,5 +162,7 @@ export const Upload: FC<UploadProps> = (props) => {
         </div>
     )
 }
-
+Upload.defaultProps = {
+    name: 'file',
+}
 export default Upload;
