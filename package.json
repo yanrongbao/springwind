@@ -1,7 +1,10 @@
 {
   "name": "springwind",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "build/index.js",
+  "module": "build/index.js",
+  "types": "build/index.d.ts",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
@@ -23,17 +26,21 @@
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-transition-group": "^4.4.1",
+    "rimraf": "^3.0.2",
     "sass-loader": "9",
     "typescript": "~3.7.2",
     "webpack": "4.42.0"
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rimraf ./build",
+    "build": "npm run clean && npm run build-ts && npm run build-css",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "build-ts": "tsc -p tsconfig.build.json",
+    "build-css": "node-sass ./src/style/index.scss ./build/index.css"
   },
   "eslintConfig": {
     "extends": "react-app",

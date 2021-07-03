@@ -26,6 +26,7 @@ const SimpleUpload = () => {
     <Upload
       action={'https://jsonplaceholder.typicode.com/posts'}
       defaultFileList={defaultFileList}
+      drag
     // onSuccess={action('success')}
     // onBeforeUpload={filePromise}
     />

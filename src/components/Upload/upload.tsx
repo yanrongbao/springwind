@@ -1,8 +1,9 @@
-import React, { useState, createContext, FC, useRef, ChangeEvent } from 'react';
+import React, { useState, createContext, FC, useRef, ChangeEvent, Children } from 'react';
 import classNames from 'classnames';
 import axios from 'axios'
 import Button from '../Button/button'
 import { UploadList } from '../UploadList/uploadList'
+import Dragger from './dragger';
 type UploadFileStatus = 'ready' | 'uploading' | 'success' | 'error'
 export interface UploadFile {
     uid: string;
@@ -24,6 +25,7 @@ export interface UploadProps {
     withCredentials?: boolean;
     accept?: string;
     multiple?: boolean;
+    drag?: boolean;
     onBeforeUpload?: (file: File) => boolean | Promise<File>;
     onProgress?: (percentage: number, file: File) => void;
     onSuccess?: (data: any, file: File) => void;
@@ -42,6 +44,8 @@ export const Upload: FC<UploadProps> = (props) => {
         withCredentials,
         accept,
         multiple,
+        drag,
+        children,
         onError,
         onProgress,
         onSuccess,
@@ -62,7 +66,7 @@ export const Upload: FC<UploadProps> = (props) => {
             })
         })
     }
-    const haneldClick = () => {
+    const handelClick = () => {
         if (fileInput.current) {
             fileInput.current.click()
         }
@@ -92,7 +96,7 @@ export const Upload: FC<UploadProps> = (props) => {
             }
         })
     }
-    const post = (file: File) => {
+    const post = (file: any) => {
         const _file: UploadFile = {
             uid: Date.now() + 'upload-file',
             status: 'ready',
@@ -143,12 +147,22 @@ export const Upload: FC<UploadProps> = (props) => {
     }
     return (
         <div className={'springwind-upload-component'}>
-            <Button
-                btnType={'primary'}
-                onClick={haneldClick}
-            >
-                Upload file
-                 </Button>
+            <div className={'springwind-upload-input'} style={{ display: 'block' }} onClick={handelClick}>
+                {/* <Button
+                    btnType={'primary'}
+                >
+                    Upload file
+                 </Button> */}
+                {
+                    drag ?
+                        <Dragger onFile={(files) => uploadFiles(files)}>
+                            {children}
+                        </Dragger>
+                        :
+                        children
+                }
+            </div>
+
             <input
                 ref={fileInput}
                 type="file"
@@ -159,7 +173,7 @@ export const Upload: FC<UploadProps> = (props) => {
                 onChange={handleFileChange}
             />
             <UploadList fileList={fileList} onRemove={handleRemove} />
-        </div>
+        </div >
     )
 }
 Upload.defaultProps = {
